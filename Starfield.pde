@@ -5,15 +5,16 @@ void setup()
 	opac = 255;
 	size(500,500);
 	background(0);
-	bob = new Particle[500];
+	bob = new Particle[501];
 	for (int i=0; i<= 489; i++)
   	{
     bob[i] = new NormalParticle();
   	}
-  	for (int i=490; i< bob.length; i++)
+  	for (int i=490; i<= 499; i++)
   	{
     bob[i] = new OddballParticle();
   	}
+  	bob[500] = new JumboParticle();
 }
 void draw()
 {
@@ -108,7 +109,7 @@ class OddballParticle implements Particle
 		right = false;
 		myX = 250;
 		myY = 250;
-		speed = Math.random()*5;
+		speed = Math.random()*5+2;
 		ang = Math.random()*2*Math.PI;
 		col =color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
 		bounceX = Math.cos(ang)*speed;
@@ -160,4 +161,18 @@ class OddballParticle implements Particle
 		}
 	}
 	//your code here
+}
+class JumboParticle extends OddballParticle
+{
+	JumboParticle()
+	{
+		speed = Math.random()*5 + 10;
+
+	}
+	public void show()
+	{
+		fill(col);
+		ellipse((float)myX,(float)myY,35,35);
+
+	}
 }
